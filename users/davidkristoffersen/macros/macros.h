@@ -18,6 +18,7 @@ enum keycodes {
 
 bool process_debug(uint16_t keycode, keyrecord_t* record);
 bool process_language(uint16_t keycode, keyrecord_t* record);
+bool process_unicodes(uint16_t keycode, keyrecord_t* record);
 
 // Prepend key records with macros
 bool process_record_user(uint16_t keycode, keyrecord_t* record);

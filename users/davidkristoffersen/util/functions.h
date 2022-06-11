@@ -5,28 +5,24 @@
 
 #include "davidkristoffersen.h"
 
-// Default layer if none is specified
-#define LAYER_DEFAULT -1
+// Code swap from pre to post
+typedef const struct code_swap {
+    uint16_t pre;
+    uint16_t post;
+} code_swap_t;
 
-// Check if layer is an active default layer
-#define IS_DEFAULT_ON(layer) is_default_on(layer)
-// Check if layer is an inactive default layer
-#define IS_DEFAULT_OFF(layer) !is_default_on(layer)
-
-// Return false if test equal false
-#define HANDLE_FALSE(bool) if (!bool) return false;
-// Generic array lenght define
-#define ARR_LEN(arr) (sizeof(arr) / sizeof(arr)[0])
-// Printf-like functionality for send_string
-#define SEND_VAR(str, ...) \
-    do { \
-        char var[128]; \
-        sprintf(var, str, __VA_ARGS__); \
-        send_string(var); \
-    } while(0)
+// Array of codes to swap with size
+typedef const struct code_swap_wrapper {
+    const int lang;
+    const int size;
+    code_swap_t* arr;
+} code_swap_wrapper_t;
 
 // Get special shifted code
 uint16_t get_special_shifted_code(uint16_t keycode);
 
 // Get language specific code
 uint16_t get_norwegian_code(uint16_t keycode);
+
+// Get matching code from array of two codes
+uint16_t get_swapped_code(uint16_t keycode, code_swap_wrapper_t* code_arr);

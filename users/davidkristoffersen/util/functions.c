@@ -4,48 +4,31 @@
 #include "functions.h"
 
 #ifndef NO_SPECIAL_SHIFT
-// Code set to swap struct
-typedef struct code_set {
-    uint16_t pre;
-    uint16_t post;
-} code_set_t;
-
-// Shift codes conversion struct
-typedef struct shift_code {
-    int lang;
-    int size;
-    code_set_t* codes;
-} shift_code_t;
-
 #ifdef LAYER_NO
-code_set_t NO_SHIFT_CODES [] = {
+code_swap_t NO_SHIFT_CODES [] = {
    {NO_QUOT, NO_DQUO},
    {NO_BSLS, NO_PIPE},
 };
 #endif
 
-code_set_t EN_SHIFT_CODES [] = {
+code_swap_t EN_SHIFT_CODES [] = {
     {KC_COMM, KC_SCLN},
     {KC_DOT, KC_COLN},
 };
 
 // Array of shift code conversions
-const shift_code_t SHIFT_CODES [] = {
+code_swap_wrapper_t SHIFT_WRAPPER [] = {
 #ifdef LAYER_NO
-    {.lang = LAYER_NO,
-     .size = ARR_LEN(NO_SHIFT_CODES),
-     .codes = NO_SHIFT_CODES},
+    {.lang = LAYER_NO, CODES_WRAPPER(NO_SHIFT_CODES)},
 #endif
-    {.lang = LAYER_EN,
-     .size = ARR_LEN(EN_SHIFT_CODES),
-     .codes = EN_SHIFT_CODES},
+    {.lang = LAYER_EN, CODES_WRAPPER(EN_SHIFT_CODES) }
 };
-const int SHIFT_CODES_SIZE = ARR_LEN(SHIFT_CODES);
+const int SHIFT_WRAPPER_SIZE = ARR_LEN(SHIFT_WRAPPER);
 #endif
 
 #ifdef LAYER_NO
 // Array of English to Norwegian code translations
-const code_set_t EN2NO_CODES [] = {
+code_swap_t EN2NO_CODES [] = {
     {KC_QUOT, NO_QUOT},
     {KC_MINS, NO_MINS},
     {KC_BSLS, NO_BSLS},
@@ -72,7 +55,7 @@ const code_set_t EN2NO_CODES [] = {
     {KC_DLR,  NO_DLR},
     {KC_GRV,  NO_GRV}
 };
-const int EN2NO_CODES_SIZE = ARR_LEN(EN2NO_CODES);
+code_swap_wrapper_t EN2NO_WRAPPER = { CODES_WRAPPER(EN2NO_CODES) };
 #endif
 
 // Check if layer is an active default layer
@@ -85,12 +68,10 @@ bool is_default_on(int layer) {
 #ifndef NO_SPECIAL_SHIFT
 // Get special shifted code
 uint16_t get_special_shifted_code(uint16_t keycode) {
-    for (int i = 0; i < SHIFT_CODES_SIZE; i++) {
-        if (IS_DEFAULT_OFF(SHIFT_CODES[i].lang)) continue;
-        for (int j = 0; j < SHIFT_CODES[i].size; j++) {
-            if (keycode == SHIFT_CODES[i].codes[j].pre)
-                return SHIFT_CODES[i].codes[j].post;
-        }
+    for (int i = 0; i < SHIFT_WRAPPER_SIZE; i++) {
+        if (IS_DEFAULT_OFF(SHIFT_WRAPPER[i].lang)) continue;
+        uint16_t swapped_code = get_swapped_code(keycode, &SHIFT_WRAPPER[i]);
+        if (swapped_code != keycode) return swapped_code;
     }
     return keycode;
 }
@@ -100,12 +81,19 @@ uint16_t get_special_shifted_code(uint16_t keycode) {
 // Get language specific code
 uint16_t get_norwegian_code(uint16_t keycode) {
     if (IS_DEFAULT_ON(LAYER_NO)) {
-        for (int i = 0; i < EN2NO_CODES_SIZE; i++) {
-            if (keycode == EN2NO_CODES[i].pre) {
-                return EN2NO_CODES[i].post;
-            }
-        }
+        uint16_t swapped_code = get_swapped_code(keycode, &EN2NO_WRAPPER);
+        if (swapped_code != keycode) return swapped_code;
     }
     return keycode;
 }
 #endif
+
+// Get matching code from set of two codes
+uint16_t get_swapped_code(uint16_t keycode, code_swap_wrapper_t* code_wrapper) {
+    for (int i = 0; i < code_wrapper->size; i++) {
+        if (keycode == code_wrapper->arr[i].pre) {
+            return code_wrapper->arr[i].post;
+        }
+    }
+    return keycode;
+}

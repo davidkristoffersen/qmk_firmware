@@ -11,6 +11,7 @@
 #   include "macros/norwegian.h"
 #endif
 
+#include "util/defines.h"
 #include "util/functions.h"
 
 #include "hardware/split_space.h"

@@ -18,12 +18,15 @@ bool handle_test(uint16_t keycode) {
     case KC_T2:
 #ifdef LAYER_NO
         // Test other characters
-        tap_code16(NO_AE);
-        tap_code16(NO_OE);
-        tap_code16(NO_AA);
-        tap_code16(S(NO_AE));
-        tap_code16(S(NO_OE));
-        tap_code16(S(NO_AA));
+        // tap_code16(NO_AE);
+        // tap_code16(NO_OE);
+        // tap_code16(NO_AA);
+        // tap_code16(S(NO_AE));
+        // tap_code16(S(NO_OE));
+        // tap_code16(S(NO_AA));
+        SEND_STRING("\"");
+        tap_code16(UC(0x00E6));
+        SEND_STRING("\"");
 #endif
         return false;
     }

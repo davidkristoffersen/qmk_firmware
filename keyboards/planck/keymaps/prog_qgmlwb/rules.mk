@@ -4,3 +4,4 @@ SRC += src/layouts.c
 USER_NAME := davidkristoffersen
 
 SIZE_OPTIMIZE = yes
+UNICODE = yes

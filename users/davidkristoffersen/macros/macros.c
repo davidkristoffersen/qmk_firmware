@@ -11,6 +11,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 #endif
         HANDLE_FALSE(process_debug(keycode, record));
         HANDLE_FALSE(process_language(keycode, record));
+        HANDLE_FALSE(process_unicodes(keycode, record));
     }
     return true;
 }
