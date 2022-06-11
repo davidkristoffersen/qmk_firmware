@@ -13,7 +13,7 @@ enum keycodes {
     // Norwegian Æ, Ø, Å
     KC_AE,
     KC_OE,
-    KC_AA
+    KC_AA,
 };
 
 bool process_debug(uint16_t keycode, keyrecord_t* record);

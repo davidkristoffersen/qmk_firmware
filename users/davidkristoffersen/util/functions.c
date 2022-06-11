@@ -5,13 +5,13 @@
 
 #ifndef NO_SPECIAL_SHIFT
 #ifdef LAYER_NO
-code_swap_t NO_SHIFT_CODES [] = {
+code_swap_t NO_SHIFT_SWAPS [] = {
    {NO_QUOT, NO_DQUO},
    {NO_BSLS, NO_PIPE},
 };
 #endif
 
-code_swap_t EN_SHIFT_CODES [] = {
+code_swap_t EN_SHIFT_SWAPS [] = {
     {KC_COMM, KC_SCLN},
     {KC_DOT, KC_COLN},
 };
@@ -19,16 +19,16 @@ code_swap_t EN_SHIFT_CODES [] = {
 // Array of shift code conversions
 code_swap_wrapper_t SHIFT_WRAPPER [] = {
 #ifdef LAYER_NO
-    {.lang = LAYER_NO, CODES_WRAPPER(NO_SHIFT_CODES)},
+    {.lang = LAYER_NO, CODES_WRAPPER(NO_SHIFT_SWAPS)},
 #endif
-    {.lang = LAYER_EN, CODES_WRAPPER(EN_SHIFT_CODES) }
+    {.lang = LAYER_EN, CODES_WRAPPER(EN_SHIFT_SWAPS) }
 };
 const int SHIFT_WRAPPER_SIZE = ARR_LEN(SHIFT_WRAPPER);
 #endif
 
 #ifdef LAYER_NO
 // Array of English to Norwegian code translations
-code_swap_t EN2NO_CODES [] = {
+code_swap_t EN2NO_SWAPS [] = {
     {KC_QUOT, NO_QUOT},
     {KC_MINS, NO_MINS},
     {KC_BSLS, NO_BSLS},
@@ -55,7 +55,7 @@ code_swap_t EN2NO_CODES [] = {
     {KC_DLR,  NO_DLR},
     {KC_GRV,  NO_GRV}
 };
-code_swap_wrapper_t EN2NO_WRAPPER = { CODES_WRAPPER(EN2NO_CODES) };
+code_swap_wrapper_t EN2NO_WRAPPER = { CODES_WRAPPER(EN2NO_SWAPS) };
 #endif
 
 // Check if layer is an active default layer
@@ -92,8 +92,17 @@ uint16_t get_norwegian_code(uint16_t keycode) {
 uint16_t get_swapped_code(uint16_t keycode, code_swap_wrapper_t* code_wrapper) {
     for (int i = 0; i < code_wrapper->size; i++) {
         if (keycode == code_wrapper->arr[i].pre) {
-            return code_wrapper->arr[i].post;
+            return get_mods() & MOD_MASK_SHIFT && code_wrapper->arr[i].shift
+                ? code_wrapper->arr[i].shift
+                : code_wrapper->arr[i].post;
         }
     }
     return keycode;
+}
+
+// Tap unicode hex value
+void tap_unicode(uint16_t hex) {
+    unicode_input_start();
+    register_hex(hex);
+    unicode_input_finish();
 }

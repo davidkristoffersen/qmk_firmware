@@ -3,28 +3,30 @@
 
 #include "macros.h"
 
-#ifdef UNICODE_ENABLE
+#ifdef UNICODE
 
-code_swap_t UNICODE_CODES [] = {
-    {KC_AE, 0x00E6},
-    {KC_OE, 0x00F8},
-    {KC_AA, 0x00E5},
+code_swap_t UNICODE_SWAPS [] = {
+    {KC_AE, UC_ae, UC_AE},
+    {KC_OE, UC_oe, UC_OE},
+    {KC_AA, UC_aa, UC_AA},
 };
-code_swap_wrapper_t UNICODE_WRAPPER = { CODES_WRAPPER(UNICODE_CODES) };
+code_swap_wrapper_t UNICODE_WRAPPER = { CODES_WRAPPER(UNICODE_SWAPS) };
 
 // Tap unicode codes
 bool handle_unicode(uint16_t keycode) {
-    uint16_t swapped_code = get_swapped_code(keycode, &UNICODE_WRAPPER);
+    if (IS_DEFAULT_OFF(LAYER_EN)) return true;
+    uint16_t swapped_code;
+    swapped_code = get_swapped_code(keycode, &UNICODE_WRAPPER);
     if (swapped_code != keycode) {
-        tap_code16(UC(swapped_code));
-        // return false
+        tap_unicode(swapped_code);
+        return false;
     }
     return true;
 }
 #endif
 
 bool process_unicodes(uint16_t keycode, keyrecord_t* record) {
-#ifdef UNICODE_ENABLE
+#ifdef UNICODE
     HANDLE_FALSE(handle_unicode(keycode));
 #endif
     return true;

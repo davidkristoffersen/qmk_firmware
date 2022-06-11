@@ -6,7 +6,9 @@
 #define ENABLE_COMPILE_KEYCODE
 
 // Userspace defines
+#define UNICODE
 // #define SPLIT_SPACE
 // #define NO_SPECIAL_SHIFT
+// #define SENDSTRING_NO
 #define LAYER_EN QGMLWB_EN
 #define LAYER_NO QGMLWB_NO

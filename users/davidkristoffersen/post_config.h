@@ -6,3 +6,7 @@
 #ifndef LAYER_EN
 #   define LAYER_EN LAYER_DEFAULT
 #endif
+
+#ifdef UNICODE
+#   define UNICODE_SELECTED_MODES UC_WINC
+#endif

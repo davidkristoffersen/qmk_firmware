@@ -16,22 +16,28 @@ bool handle_test(uint16_t keycode) {
         SEND_STRING(" !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
         break;
     case KC_T2:
-#ifdef LAYER_NO
         // Test other characters
-        // tap_code16(NO_AE);
-        // tap_code16(NO_OE);
-        // tap_code16(NO_AA);
-        // tap_code16(S(NO_AE));
-        // tap_code16(S(NO_OE));
-        // tap_code16(S(NO_AA));
-        SEND_STRING("\"");
-        tap_code16(UC(0x00E6));
-        SEND_STRING("\"");
+#ifdef LAYER_NO
+        if (IS_DEFAULT_ON(LAYER_NO)) {
+            tap_code16(NO_AE);
+            tap_code16(NO_OE);
+            tap_code16(NO_AA);
+            tap_code16(S(NO_AE));
+            tap_code16(S(NO_OE));
+            tap_code16(S(NO_AA));
+            return false;
+        }
 #endif
+        tap_unicode(UC_ae);
+        tap_unicode(UC_oe);
+        tap_unicode(UC_aa);
+        tap_unicode(UC_AE);
+        tap_unicode(UC_OE);
+        tap_unicode(UC_AA);
         return false;
-    }
+        }
     return true;
-};
+    };
 
 bool process_debug(uint16_t keycode, keyrecord_t* record) {
     HANDLE_FALSE(handle_test(keycode));

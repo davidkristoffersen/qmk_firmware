@@ -2,6 +2,9 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "macros.h"
+#ifdef SENDSTRING_NO
+#   include "sendstring_norwegian.h"
+#endif
 
 bool handle_language(uint16_t keycode) {
 #ifdef LAYER_NO

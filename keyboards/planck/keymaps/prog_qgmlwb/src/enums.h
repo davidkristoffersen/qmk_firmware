@@ -5,8 +5,8 @@
 
 // Layouts enum
 enum keyboard_layouts {
-    QGMLWB_NO,
     QGMLWB_EN,
+    QGMLWB_NO,
 
     QWERTY,
     COLEMAK,

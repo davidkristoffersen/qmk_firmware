@@ -31,3 +31,12 @@
         TYPE##_t* arr; \
     } TYPE##_arr_t
 #define CODES_WRAPPER(CODES) .size = ARR_LEN(CODES), .arr = CODES
+
+// Unicode characters
+#define UC_AE 0x00C6 // Æ
+#define UC_OE 0x00D8 // Ø
+#define UC_AA 0x00C5 // Å
+
+#define UC_ae 0x00E6 // æ
+#define UC_oe 0x00F8 // ø
+#define UC_aa 0x00E5 // å
