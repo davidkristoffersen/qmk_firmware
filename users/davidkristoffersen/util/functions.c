@@ -106,3 +106,11 @@ void tap_unicode(uint16_t hex) {
     register_hex(hex);
     unicode_input_finish();
 }
+
+// Tap keycode without modifiers
+void tap_without_mods(uint16_t keycode, uint8_t mods) {
+    uint8_t old_mods = get_mods();
+    del_mods(mods);
+    tap_code16(keycode);
+    set_mods(old_mods);
+}

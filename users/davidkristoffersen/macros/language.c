@@ -19,9 +19,7 @@ bool handle_language(uint16_t keycode) {
         uint16_t shifted_key = get_special_shifted_code(keycode);
         if (shifted_key != keycode) {
             // Tap shifted key while shift is disabled
-            unregister_code(KC_LSFT);
-            tap_code16(shifted_key);
-            register_code(KC_LSFT);
+            tap_without_mods(shifted_key, MOD_MASK_SHIFT);
             return false;
         }
     }

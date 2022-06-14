@@ -33,3 +33,6 @@ uint16_t get_swapped_code(uint16_t keycode, code_swap_wrapper_t* code_arr);
 
 // Tap unicode hex value
 void tap_unicode(uint16_t hex);
+
+// Tap keycode without modifiers
+void tap_without_mods(uint16_t keycode, uint8_t mods);

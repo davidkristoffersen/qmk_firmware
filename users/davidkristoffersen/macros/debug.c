@@ -35,9 +35,9 @@ bool handle_test(uint16_t keycode) {
         tap_unicode(UC_OE);
         tap_unicode(UC_AA);
         return false;
-        }
+    }
     return true;
-    };
+}
 
 bool process_debug(uint16_t keycode, keyrecord_t* record) {
     HANDLE_FALSE(handle_test(keycode));
