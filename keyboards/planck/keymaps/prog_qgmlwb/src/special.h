@@ -26,7 +26,7 @@
 
 /* Numpad
  * ,-----------------------------------------------------------------------------------.
- * |      | XXXX | XXXX | XXXX | XXXX | XXXX | XXXX |  7   |  8   |  9   |  /   |      |
+ * |      | XXXX | XXXX | XXXX | XXXX | XXXX |NumLck|  7   |  8   |  9   |  /   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      | XXXX | XXXX | XXXX | XXXX | XXXX | XXXX |  4   |  5   |  6   |  *   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -36,8 +36,8 @@
  * `-----------------------------------------------------------------------------------'
 */
 #define numpad_map LAYOUT_ortho_4x12(\
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_7, KC_8,    KC_9,   KC_KP_SLASH,    _______,\
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_4, KC_5,    KC_6,   KC_KP_ASTERISK, _______,\
-    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_1, KC_2,    KC_3,   KC_KP_MINUS,    XXXXXXX,\
-    _______, _______, _______, _______, XXXXXXX, _______, _______, KC_0, KC_COMM, KC_DOT, KC_KP_PLUS,     XXXXXXX\
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NUM,  KC_P7, KC_P8,   KC_P9,   KC_PSLS, _______,\
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P4, KC_P5,   KC_P6,   KC_PAST, _______,\
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P1, KC_P2,   KC_P3,   KC_PMNS, XXXXXXX,\
+    _______, _______, _______, _______, XXXXXXX, _______, _______, KC_P0, KC_COMM, KC_PDOT, KC_PPLS, XXXXXXX\
 )
