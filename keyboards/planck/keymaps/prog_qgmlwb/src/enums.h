@@ -20,4 +20,5 @@ enum keyboard_layouts {
 
     ADJUST,
     NUMPAD,
+    NUMPADN
 };

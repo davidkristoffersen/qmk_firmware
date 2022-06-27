@@ -32,12 +32,30 @@
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      | XXXX | XXXX | XXXX | XXXX | XXXX | XXXX |  1   |  2   |  3   |  -   | XXXX |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      | XXXX |      |      |  0   |  ,   |  .   |  +   | XXXX |
+ * |      |      |      |      |nmpadn|      |      |  0   |  ,   |  .   |  +   | XXXX |
  * `-----------------------------------------------------------------------------------'
 */
 #define numpad_map LAYOUT_ortho_4x12(\
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_NUM,  KC_P7, KC_P8,   KC_P9,   KC_PSLS, _______,\
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P4, KC_P5,   KC_P6,   KC_PAST, _______,\
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_P1, KC_P2,   KC_P3,   KC_PMNS, XXXXXXX,\
-    _______, _______, _______, _______, XXXXXXX, _______, _______, KC_P0, KC_COMM, KC_PDOT, KC_PPLS, XXXXXXX\
+    _______, _______, _______, _______, numpadn, _______, _______, KC_P0, KC_COMM, KC_PDOT, KC_PPLS, XXXXXXX\
+)
+
+/* Numpad normal
+ * ,-----------------------------------------------------------------------------------.
+ * |      | XXXX | XXXX | XXXX | XXXX | XXXX |      |  7   |  8   |  9   |  /   |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      | XXXX | XXXX | XXXX | XXXX | XXXX | XXXX |  4   |  5   |  6   |  *   |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      | XXXX | XXXX | XXXX | XXXX | XXXX | XXXX |  1   |  2   |  3   |  -   | XXXX |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |  0   |  ,   |  .   |  +   | XXXX |
+ * `-----------------------------------------------------------------------------------'
+*/
+#define numpad_normal_map LAYOUT_ortho_4x12(\
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_7, KC_8,    KC_9,   KC_SLSH, _______,\
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_4, KC_5,    KC_6,   KC_ASTR, _______,\
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_1, KC_2,    KC_3,   KC_MINS, XXXXXXX,\
+    _______, _______, _______, _______, _______, _______, _______, KC_0, KC_COMM, KC_DOT, KC_PLUS, XXXXXXX\
 )

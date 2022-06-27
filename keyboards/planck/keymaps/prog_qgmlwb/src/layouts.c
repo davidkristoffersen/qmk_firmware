@@ -19,5 +19,6 @@ KEYMAP keymaps [][MATRIX_ROWS][MATRIX_COLS] = {
 
     [ADJUST] = adjust_map,
     [NUMPAD] = numpad_map,
+    [NUMPADN] = numpad_normal_map
 };
 

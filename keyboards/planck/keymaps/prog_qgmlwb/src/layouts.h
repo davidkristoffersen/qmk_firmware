@@ -23,5 +23,6 @@
 
 #define adjust MO(ADJUST)
 #define numpad MO(NUMPAD)
+#define numpadn MO(NUMPADN)
 
 extern KEYMAP keymaps [][MATRIX_ROWS][MATRIX_COLS];
