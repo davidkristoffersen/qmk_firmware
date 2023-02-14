@@ -5,10 +5,12 @@
 
 #include "davidkristoffersen.h"
 
+#undef KC_RSPC
 #define KC_RSPC KC_SPACE
 
+#undef KC_LSPC
 #ifdef SPLIT_SPACE
-#    define KC_LSPC LT(NUMPAD, KC_NO)
+#   define KC_LSPC LT(NUMPAD, KC_NO)
 #else
 #   define KC_LSPC KC_SPACE
 #endif
