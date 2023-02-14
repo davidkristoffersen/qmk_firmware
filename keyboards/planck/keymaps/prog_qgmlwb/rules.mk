@@ -1,5 +1,5 @@
 # Compiler source files
-SRC += src/layouts.c
+INTROSPECTION_KEYMAP_C := src/layouts.c
 
 USER_NAME := davidkristoffersen
 
