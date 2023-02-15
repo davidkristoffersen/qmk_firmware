@@ -1,4 +1,5 @@
 // Copyright 2022 David Kristoffersen (@davidkristoffersen)
 // SPDX-License-Identifier: GPL-3.0-or-later
 
-#include "src/layouts.h"
+// rules.mk specifies the source files to add with introspection
+// #include "src/layouts.h"
